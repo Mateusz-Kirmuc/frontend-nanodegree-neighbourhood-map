@@ -4,6 +4,8 @@ body {
   display: -ms-flexbox;
   display: flex;
   color: LightGray;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 
@@ -34,6 +36,7 @@ aside button {
   margin-bottom: 48px;
   font-size: 20px;
   background-color: DodgerBlue;
+  color: LightGray;
 }
 
 aside ul {
@@ -49,7 +52,8 @@ aside ul li {
 
 aside header {
   font-size: 48px;
-  padding: 15px 5px
+  padding: 15px 5px;
+  text-align: center;
 }
 
 
@@ -73,6 +77,25 @@ nav {
 
 i {
   color: DodgerBlue;
-  width: 48px;
-  height: 48px;
+}
+
+
+/* styles for medium and large displays */
+
+@media (min-width: 800px) {
+  main {
+    -webkit-box-flex: 4;
+    -ms-flex: 4;
+    flex: 4;
+  }
+  aside header {
+    font-size: 24px;
+  }
+  nav {
+    font-size: 6px;
+    padding: 20px;
+  }
+  aside input, aside button {
+    font-size: 16px;
+  }
 }
