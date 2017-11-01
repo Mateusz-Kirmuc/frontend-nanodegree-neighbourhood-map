@@ -20,12 +20,8 @@
         <input type="text" placeholder="Filter locations">
         <button type="button" name="button">Filter</button>
       </form>
-      <ul>
-        <li>Location 1</li>
-        <li>Location 2</li>
-        <li>Location 3</li>
-        <li>Location 4</li>
-        <li>Location 5</li>
+      <ul data-bind="foreach: places">
+        <li data-bind="text: name"></li>
       </ul>
     </aside>
     <main>
@@ -34,6 +30,7 @@
       </nav>
       <div id="map"></div>
     </main>
+    <script src="app.js"></script>
     <script type="text/javascript" src="map.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-gaIaULAX3ObytjXpU1l7Ns9j4EKaqh0&v=3&callback=initMap">
