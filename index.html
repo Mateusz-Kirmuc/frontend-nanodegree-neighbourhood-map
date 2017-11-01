@@ -16,9 +16,10 @@
   <body>
     <aside>
       <header>Matthew's Locations</header>
-      <form action="">
-        <input type="text" placeholder="Filter locations">
-        <button type="button" name="button">Filter</button>
+      <form action="" data-bind="submit: handleForm">
+        <input data-bind='value: query, valueUpdate: "afterkeydown"'
+         type="text" placeholder="Filter locations">
+        <button type="submit" name="button">Filter</button>
       </form>
       <ul data-bind="foreach: places">
         <li data-bind="text: name"></li>
