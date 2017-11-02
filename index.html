@@ -14,7 +14,7 @@
     <title></title>
   </head>
   <body>
-    <aside>
+    <aside data-bind="style: {display: displaySidebar() ? 'block' : 'none'}">
       <header>Matthew's Locations</header>
       <form action="" data-bind="submit: handleForm">
         <input data-bind='value: query, valueUpdate: "afterkeydown"'
@@ -27,7 +27,7 @@
     </aside>
     <main>
       <nav class="nav-bar">
-        <i class="fa fa-navicon fa-5x"></i>
+        <i data-bind="click: toggleSidebar" class="fa fa-navicon fa-5x"></i>
       </nav>
       <div id="map"></div>
     </main>

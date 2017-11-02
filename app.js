@@ -16,6 +16,7 @@ const places = [{
 ];
 
 let ViewModel = function() {
+  this.displaySidebar = ko.observable(false);
   this.places = ko.observableArray(places);
   this.query = ko.observable("");
 
@@ -42,5 +43,9 @@ let ViewModel = function() {
       this.filterPlaces();
     }
   };
+
+  this.toggleSidebar = function() {
+    this.displaySidebar(this.displaySidebar() ? false : true);
+  }
 }
 ko.applyBindings(new ViewModel());
