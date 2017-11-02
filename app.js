@@ -1,17 +1,42 @@
 const places = [{
-    name: "PKiN"
+    id: 0,
+    name: "PKiN",
+    location: {
+      lat: 52.231831,
+      lng: 21.005984
+    }
   },
   {
-    name: "Museum of Warsaw Uprising"
+    id: 1,
+    name: "Museum of Warsaw Uprising",
+    location: {
+      lat: 52.232332,
+      lng: 20.980885
+    }
   },
   {
-    name: "National Museum of Art"
+    id: 2,
+    name: "National Museum of Art",
+    location: {
+      lat: 52.231620,
+      lng: 21.024801
+    }
   },
   {
-    name: "Royal Palace"
+    id: 3,
+    name: "Royal Castle",
+    location: {
+      lat: 52.247975,
+      lng: 21.015255
+    }
   },
   {
-    name: "Belvedere"
+    id: 4,
+    name: "President Palace",
+    location: {
+      lat: 52.243146,
+      lng: 21.016624
+    }
   }
 ];
 
@@ -22,7 +47,9 @@ let ViewModel = function() {
 
   this.resetPlaces = function() {
     this.places(places);
-
+    for (let marker of markers) {
+      marker.setMap(map);
+    }
   };
 
   this.filterPlaces = function() {
@@ -33,9 +60,16 @@ let ViewModel = function() {
         filteredPlaces.push(place);
       }
     }
-    this.places(filteredPlaces);
     this.query("");
+    this.places(filteredPlaces);
+
+    for (let place of places) {
+      if (this.places().indexOf(place) == -1) {
+        markers[place.id].setMap(null);
+      }
+    }
   };
+
   this.handleForm = function() {
     if (!this.query()) {
       this.resetPlaces();
@@ -46,6 +80,6 @@ let ViewModel = function() {
 
   this.toggleSidebar = function() {
     this.displaySidebar(this.displaySidebar() ? false : true);
-  }
-}
+  };
+};
 ko.applyBindings(new ViewModel());
