@@ -27,7 +27,8 @@ let ViewModel = function() {
   this.filterPlaces = function() {
     let filteredPlaces = [];
     for (let place of places) {
-      if (place.name.search(this.query()) > -1) {
+      let re = new RegExp(this.query(), "i");
+      if (place.name.search(re) > -1) {
         filteredPlaces.push(place);
       }
     }
