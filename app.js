@@ -47,10 +47,22 @@ let ViewModel = function() {
 
   this.resetPlaces = function() {
     this.places(places);
+    this.showMarkers();
+  };
+
+  this.showMarkers = function() {
     for (let marker of markers) {
       marker.setMap(map);
     }
-  };
+  }
+
+  this.hideMarkers = function() {
+    for (let place of places) {
+      if (this.places().indexOf(place) == -1) {
+        markers[place.id].setMap(null);
+      }
+    }
+  }
 
   this.filterPlaces = function() {
     let filteredPlaces = [];
@@ -62,12 +74,7 @@ let ViewModel = function() {
     }
     this.query("");
     this.places(filteredPlaces);
-
-    for (let place of places) {
-      if (this.places().indexOf(place) == -1) {
-        markers[place.id].setMap(null);
-      }
-    }
+    this.hideMarkers();
   };
 
   this.handleForm = function() {
