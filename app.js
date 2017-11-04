@@ -1,3 +1,4 @@
+// below array contains all Model data (data about places)
 const places = [{
     id: 0,
     name: "PKiN",
@@ -47,21 +48,62 @@ const places = [{
 
 let ViewModel = function() {
   let self = this;
+  // switch to show/hide side bar
   self.displaySidebar = ko.observable(false);
   self.places = ko.observableArray(places);
+  // content of filter input used to filter places (empty by default)
   self.query = ko.observable("");
 
-  self.resetPlaces = function() {
-    self.places(places);
-    self.showMarkers();
+  // function used to display/hide side bar
+  self.toggleSidebar = function() {
+    self.displaySidebar(self.displaySidebar() ? false : true);
   };
 
-  self.showMarkers = function() {
+  // function called after form submit
+  self.handleForm = function() {
+    // if input content is empty call self.resetPlaces
+    if (!self.query()) {
+      self.resetPlaces();
+      // if input contains some query, then call this.filterPlaces
+    } else {
+      self.filterPlaces();
+    }
+  };
+
+  // function shows all initial markers on map
+  // (reset places observable and shows all markers)
+  self.resetPlaces = function() {
+    self.places(places);
+    self.showAllMarkers();
+  };
+
+  self.showAllMarkers = function() {
     for (let marker of markers) {
       marker.setMap(map);
     }
   }
 
+  // function filters markers on map and update state of self.places observable
+  // accordinf to filter input query
+  self.filterPlaces = function() {
+    // create new local array
+    let filteredPlaces = [];
+    // populate array with filtered places
+    for (let place of places) {
+      let re = new RegExp(self.query(), "i");
+      if (place.name.search(re) > -1) {
+        filteredPlaces.push(place);
+      }
+    }
+    // reset query
+    self.query("");
+    // update state of self.places
+    self.places(filteredPlaces);
+    // hide unrequest markers
+    self.hideMarkers();
+  };
+
+  // function hides unrequest markers
   self.hideMarkers = function() {
     for (let place of places) {
       if (self.places().indexOf(place) == -1) {
@@ -70,41 +112,11 @@ let ViewModel = function() {
     }
   }
 
-  self.filterPlaces = function() {
-    let filteredPlaces = [];
-    for (let place of places) {
-      let re = new RegExp(self.query(), "i");
-      if (place.name.search(re) > -1) {
-        filteredPlaces.push(place);
-      }
-    }
-    self.query("");
-    self.places(filteredPlaces);
-    self.hideMarkers();
-  };
-
-  self.handleForm = function() {
-    if (!self.query()) {
-      self.resetPlaces();
-    } else {
-      self.filterPlaces();
-    }
-  };
-
-  self.toggleSidebar = function() {
-    self.displaySidebar(self.displaySidebar() ? false : true);
-  };
-
+  // click handler of every place in sidebar list
   self.handleClick = function(place) {
     let relatedMarker = markers[place.id];
-    // let relatedWindow = infoWindows[place.id];
-    //
-    // for (let infoWindow of infoWindows) {
-    //   infoWindow.close();
-    // }
-    // relatedWindow.open(map, relatedMarker);
-    // relatedMarker.setAnimation(google.maps.Animation.BOUNCE);
     google.maps.event.trigger(relatedMarker, 'click');
   }
 };
+
 ko.applyBindings(new ViewModel());
