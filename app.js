@@ -91,10 +91,15 @@ let ViewModel = function() {
   };
 
   self.handleClick = function(place) {
-    for (let infoWindow of infoWindows) {
-      infoWindow.close();
-    }
-    infoWindows[place.id].open(map, markers[place.id]);
+    let relatedMarker = markers[place.id];
+    // let relatedWindow = infoWindows[place.id];
+    //
+    // for (let infoWindow of infoWindows) {
+    //   infoWindow.close();
+    // }
+    // relatedWindow.open(map, relatedMarker);
+    // relatedMarker.setAnimation(google.maps.Animation.BOUNCE);
+    google.maps.event.trigger(relatedMarker, 'click');
   }
 };
 ko.applyBindings(new ViewModel());

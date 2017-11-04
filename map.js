@@ -26,8 +26,10 @@ function initMap() {
 
     infoWindows.push(infoWindow);
     marker.addListener("click", function() {
+      stopAnimateAllMarkers();
+      closeAllWindows();
+      marker.setAnimation(google.maps.Animation.BOUNCE);
       infoWindow.open(map, marker);
-      toggleBounce(marker);
     });
 
     bounds.extend(marker.position);
@@ -35,10 +37,14 @@ function initMap() {
   map.fitBounds(bounds);
 }
 
-function toggleBounce(marker) {
-  if (marker.getAnimation() !== null) {
+function stopAnimateAllMarkers() {
+  for (let marker of markers) {
     marker.setAnimation(null);
-  } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
+
+function closeAllWindows() {
+  for (let infoWindow of infoWindows) {
+    infoWindow.close();
   }
 }
