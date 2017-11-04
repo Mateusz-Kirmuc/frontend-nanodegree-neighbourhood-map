@@ -38,6 +38,7 @@ aside button {
   font-size: 20px;
   background-color: DodgerBlue;
   color: LightGray;
+  cursor: pointer;
 }
 
 aside ul {
@@ -49,6 +50,7 @@ aside ul {
 
 aside ul li {
   padding: 10px;
+  cursor: pointer;
 }
 
 aside header {
@@ -92,6 +94,7 @@ nav {
 
 i {
   color: DodgerBlue;
+  cursor: pointer;
 }
 
 
