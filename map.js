@@ -15,7 +15,8 @@ function initMap() {
   for (let place of places) {
     let marker = new google.maps.Marker({
       position: place.location,
-      map: map
+      map: map,
+      animation: null
     });
     markers.push(marker);
 
@@ -26,9 +27,18 @@ function initMap() {
     infoWindows.push(infoWindow);
     marker.addListener("click", function() {
       infoWindow.open(map, marker);
+      toggleBounce(marker);
     });
 
     bounds.extend(marker.position);
   }
   map.fitBounds(bounds);
+}
+
+function toggleBounce(marker) {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
 }
