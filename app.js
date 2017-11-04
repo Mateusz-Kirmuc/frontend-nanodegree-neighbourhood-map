@@ -41,52 +41,60 @@ const places = [{
 ];
 
 let ViewModel = function() {
-  this.displaySidebar = ko.observable(false);
-  this.places = ko.observableArray(places);
-  this.query = ko.observable("");
+  let self = this;
+  self.displaySidebar = ko.observable(false);
+  self.places = ko.observableArray(places);
+  self.query = ko.observable("");
 
-  this.resetPlaces = function() {
-    this.places(places);
-    this.showMarkers();
+  self.resetPlaces = function() {
+    self.places(places);
+    self.showMarkers();
   };
 
-  this.showMarkers = function() {
+  self.showMarkers = function() {
     for (let marker of markers) {
       marker.setMap(map);
     }
   }
 
-  this.hideMarkers = function() {
+  self.hideMarkers = function() {
     for (let place of places) {
-      if (this.places().indexOf(place) == -1) {
+      if (self.places().indexOf(place) == -1) {
         markers[place.id].setMap(null);
       }
     }
   }
 
-  this.filterPlaces = function() {
+  self.filterPlaces = function() {
     let filteredPlaces = [];
     for (let place of places) {
-      let re = new RegExp(this.query(), "i");
+      let re = new RegExp(self.query(), "i");
       if (place.name.search(re) > -1) {
         filteredPlaces.push(place);
       }
     }
-    this.query("");
-    this.places(filteredPlaces);
-    this.hideMarkers();
+    self.query("");
+    self.places(filteredPlaces);
+    self.hideMarkers();
   };
 
-  this.handleForm = function() {
-    if (!this.query()) {
-      this.resetPlaces();
+  self.handleForm = function() {
+    if (!self.query()) {
+      self.resetPlaces();
     } else {
-      this.filterPlaces();
+      self.filterPlaces();
     }
   };
 
-  this.toggleSidebar = function() {
-    this.displaySidebar(this.displaySidebar() ? false : true);
+  self.toggleSidebar = function() {
+    self.displaySidebar(self.displaySidebar() ? false : true);
   };
+
+  self.handleClick = function(place) {
+    for (let infoWindow of infoWindows) {
+      infoWindow.close();
+    }
+    infoWindows[place.id].open(map, markers[place.id]);
+  }
 };
 ko.applyBindings(new ViewModel());

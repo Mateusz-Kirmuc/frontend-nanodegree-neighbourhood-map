@@ -22,7 +22,7 @@
         <button type="submit" name="button">Filter</button>
       </form>
       <ul data-bind="foreach: places">
-        <li data-bind="text: name"></li>
+        <li data-bind="text: name, click: $parent.handleClick"></li>
       </ul>
     </aside>
     <main>

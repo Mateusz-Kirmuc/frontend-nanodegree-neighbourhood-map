@@ -1,5 +1,6 @@
 let map;
 let markers = [];
+let infoWindows = [];
 
 function initMap() {
   let bounds = new google.maps.LatLngBounds();
@@ -22,6 +23,7 @@ function initMap() {
       content: 'Here will be wiki content'
     });
 
+    infoWindows.push(infoWindow);
     marker.addListener("click", function() {
       infoWindow.open(map, marker);
     });
