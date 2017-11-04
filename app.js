@@ -71,10 +71,12 @@ let ViewModel = function() {
   };
 
   // function shows all initial markers on map
-  // (reset places observable and shows all markers)
+  // (reset places observable, shows all markers and close previously opened
+  // windows)
   self.resetPlaces = function() {
     self.places(places);
     self.showAllMarkers();
+    closeAllWindows();
   };
 
   self.showAllMarkers = function() {
