@@ -4,7 +4,8 @@ const places = [{
     location: {
       lat: 52.231831,
       lng: 21.005984
-    }
+    },
+    wiki_query: "Pałac_Kultury_i_Nauki"
   },
   {
     id: 1,
@@ -12,7 +13,8 @@ const places = [{
     location: {
       lat: 52.232332,
       lng: 20.980885
-    }
+    },
+    wiki_query: "Muzeum_Powstania_Warszawskiego"
   },
   {
     id: 2,
@@ -20,7 +22,8 @@ const places = [{
     location: {
       lat: 52.231620,
       lng: 21.024801
-    }
+    },
+    wiki_query: "Muzeum_Narodowe_w_Warszawie"
   },
   {
     id: 3,
@@ -28,7 +31,8 @@ const places = [{
     location: {
       lat: 52.247975,
       lng: 21.015255
-    }
+    },
+    wiki_query: "Zamek_Królewski_w_Warszawie"
   },
   {
     id: 4,
@@ -36,7 +40,8 @@ const places = [{
     location: {
       lat: 52.243146,
       lng: 21.016624
-    }
+    },
+    wiki_query: "Pałac_Prezydencki_w_Warszawie"
   }
 ];
 

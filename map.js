@@ -24,6 +24,8 @@ function initMap() {
       content: 'Here will be wiki content'
     });
 
+    setContentToInfoWindow(infoWindow, place.wiki_query);
+
     infoWindows.push(infoWindow);
     marker.addListener("click", function() {
       stopAnimateAllMarkers();
@@ -47,4 +49,20 @@ function closeAllWindows() {
   for (let infoWindow of infoWindows) {
     infoWindow.close();
   }
+}
+
+function setContentToInfoWindow(infoWindow, query) {
+  $.ajax({
+    type: "GET",
+    url: `http://pl.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=${query}&callback=?`,
+    contentType: "application/json; charset=utf-8",
+    async: false,
+    dataType: "json",
+    success: function(data, textStatus, jqXHR) {
+      infoWindow.setContent($(data.parse.text["*"]).children("p")[0].innerText);
+    },
+    error: function(errorMessage) {
+      alert(errorMessage);
+    }
+  });
 }
