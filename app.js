@@ -83,7 +83,7 @@ let ViewModel = function() {
     for (let marker of markers) {
       marker.setMap(map);
     }
-  }
+  };
 
   // function filters markers on map and update state of self.places observable
   // accordinf to filter input query
@@ -112,13 +112,13 @@ let ViewModel = function() {
         markers[place.id].setMap(null);
       }
     }
-  }
+  };
 
   // click handler of every place in sidebar list
   self.handleClick = function(place) {
     let relatedMarker = markers[place.id];
     google.maps.event.trigger(relatedMarker, 'click');
-  }
+  };
 };
 
 ko.applyBindings(new ViewModel());

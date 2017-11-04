@@ -11,13 +11,13 @@
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
-    <title></title>
+    <title>My Neighbourhood map</title>
   </head>
   <body>
     <aside data-bind="style: {display: displaySidebar() ? 'block' : 'none'}">
       <header>Matthew's Locations</header>
       <form action="" data-bind="submit: handleForm">
-        <input data-bind='value: query, valueUpdate: "afterkeydown"'
+        <input data-bind="value: query, valueUpdate: 'afterkeydown'"
          type="text" placeholder="Filter locations">
         <button type="submit" name="button">Filter</button>
       </form>
