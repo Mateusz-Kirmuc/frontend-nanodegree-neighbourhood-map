@@ -15,7 +15,7 @@ with five locations indicated by markers. If you click single marker you will
 see markers animation and info window with short description of given place.
 
 In navigation bar you can see single icon. If you click this icon side bar will
-shows up. Inside side bar you can select place by clicking in given list item or
+show up. Inside side bar you can select place by clicking in given list item or
 you can filter set of places using filter form.  
 
 ## Credit
