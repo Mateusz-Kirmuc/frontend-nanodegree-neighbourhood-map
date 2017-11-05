@@ -36,20 +36,23 @@ function initMap() {
     setContentToInfoWindow(infoWindow, place.wiki_query);
 
     // add click handler to marker
-    marker.addListener("click", function() {
-      // clear map from all windows and animations
-      stopAnimateAllMarkers();
-      closeAllWindows();
-
-      // set only one animation of clicked marker
-      marker.setAnimation(google.maps.Animation.BOUNCE);
-      // open info window related to marker
-      infoWindow.open(map, marker);
-    });
+    marker.addListener("click", markerClickHandler);
 
     bounds.extend(marker.position);
   }
   map.fitBounds(bounds);
+}
+
+// marker click handler declaration
+function markerClickHandler() {
+  // clear map from all windows and animations
+  stopAnimateAllMarkers();
+  closeAllWindows();
+
+  // set only one animation of clicked marker
+  this.setAnimation(google.maps.Animation.BOUNCE);
+  // open info window related to marker
+  infoWindows[markers.indexOf(this)].open(map, this);
 }
 
 
@@ -81,4 +84,9 @@ function setContentToInfoWindow(infoWindow, query) {
       alert(errorThrown);
     }
   });
+}
+
+// Google Maps API error handling function
+function gm_authFailure() {
+  alert("Google Maps JS API error occured!");
 }
