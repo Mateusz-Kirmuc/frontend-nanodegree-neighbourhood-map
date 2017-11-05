@@ -8,7 +8,7 @@ places  in specific area along with additional info about the places.
 In order to run this application you need to download app folder, unpack it in
 separate location and run you local server within this directory (as an example,
 python SimpleHTTPServer: http://www.pythonforbeginners.com/modules-in-python/how-to-use-simplehttpserver/)  
-
+Then in your browser go to http://127.0.0.1:8000/.
 
 ## How to use
 When you have opened application within your browser, you can see map of Warsaw

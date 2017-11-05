@@ -87,6 +87,6 @@ function setContentToInfoWindow(infoWindow, query) {
 }
 
 // Google Maps API error handling function
-function gm_authFailure() {
+function handleMapError() {
   alert("Google Maps JS API error occured!");
 }
