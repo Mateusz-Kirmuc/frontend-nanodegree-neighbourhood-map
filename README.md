@@ -5,9 +5,10 @@
 places  in specific area along with additional info about the places.
 
 ## How to run
-All you have to do in order to run this application is download app folder,
-unpack it and then open index.html file using your browser. You don't have to
-install any additional programs nor dependencies.
+In order to run this application you need to download app folder, unpack it in
+separate location and run you local server within this directory (as an example,
+python SimpleHTTPServer: http://www.pythonforbeginners.com/modules-in-python/how-to-use-simplehttpserver/)  
+
 
 ## How to use
 When you have opened application within your browser, you can see map of Warsaw
